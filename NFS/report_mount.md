@@ -94,6 +94,7 @@ count: The maximum size of the READDIR3resok structure(the package from server).
 **NFS** return dir `dir_attributes`, `cookieverf`, `reply`
 
 ![image](https://github.com/jiexray/Network/blob/master/NFS/pictures/nfs_readdir_reply.png)
+***
 
 * 11. LOOKUP
 
@@ -107,6 +108,7 @@ system object.
 **NFS** return `file handle`, `file attributes`, `dir attributes`
 
 ![image](https://github.com/jiexray/Network/blob/master/NFS/pictures/nfs_lookup_reply.png)
+***
 
 * 12. READ
 
@@ -116,19 +118,20 @@ Local read data from file with `file handle`, `offset`, `count`
 
 ![image](https://github.com/jiexray/Network/blob/master/NFS/pictures/nfs_read_call.png)
 
-Here we fount the `count` is 32768, as a result, the server can only send 32768B data 
+Here we find the `count` is 32768, as a result, the server can only send 32768B data 
 to us within a trasmit. However, we can modify this arg with command `-o rsize=524288` 
 during mounting time.
 
 **NFS** return `file attributes`, `count`(the number of bytes of data returned), `eof`, `data`
 
 ![image](https://github.com/jiexray/Network/blob/master/NFS/pictures/nfs_read_reply.png)
+***
 
 * 13. CREATE
 
 ![image](https://github.com/jiexray/Network/blob/master/NFS/pictures/nfs_13.png)
 
-Local create a regular file with `where`, `how`, `mode`
+Local created a regular file with `where`, `how`, `mode`
 
 ![image](https://github.com/jiexray/Network/blob/master/NFS/pictures/nfs_create_call.png)
 
@@ -136,3 +139,19 @@ Local create a regular file with `where`, `how`, `mode`
 modification for dir-information)
 
 ![image](https://github.com/jiexray/Network/blob/master/NFS/pictures/nfs_create_reply.png)
+***
+
+* 14. WRITE
+
+![image](https://github.com/jiexray/Network/blob/master/NFS/pictures/nfs_14.png)
+
+Local wrote data to a file with `file handle`,`offset`,`count`,`stable`,`data`
+
+![image](https://github.com/jiexray/Network/blob/master/NFS/pictures/nfs_write_call.png)
+
+**NFS** reply with `file_wcc`,`count`,`committed`,`verf`
+
+![image](https://github.com/jiexray/Network/blob/master/NFS/pictures/nfs_write_reply.png)
+
+In this lab, we use `async` in transmission, the `stable` and `commited` are both `unstable`.
+
